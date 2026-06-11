@@ -1,4 +1,4 @@
-const { add, sub, mul, div } = require('../lib/calculator');
+const { add, sub, mul, div, modulo, power, squareRoot } = require('../lib/calculator');
 
 describe('calculator library', () => {
   describe('addition', () => {
@@ -62,6 +62,32 @@ describe('calculator library', () => {
 
     test('throws when no args provided', () => {
       expect(() => add([])).toThrow(/No numeric arguments provided/);
+    });
+  });
+
+  describe('extended operations', () => {
+    test('modulo with 5 % 2 => 1 (image example)', () => {
+      expect(modulo(5, 2)).toBe(1);
+    });
+
+    test('power with 2 ^ 3 => 8 (image example)', () => {
+      expect(power(2, 3)).toBe(8);
+    });
+
+    test('square root of 16 => 4 (image example)', () => {
+      expect(squareRoot(16)).toBe(4);
+    });
+
+    test('modulo by zero throws', () => {
+      expect(() => modulo(10, 0)).toThrow(/Division by zero/);
+    });
+
+    test('power supports negative exponent', () => {
+      expect(power(2, -1)).toBeCloseTo(0.5);
+    });
+
+    test('square root of negative number throws', () => {
+      expect(() => squareRoot(-4)).toThrow(/negative/);
     });
   });
 });
